@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- ∨×××× [수정 금지] ××××∨ -->
+    <title></title>
+    <!-- ∧×××× [수정 금지] ××××∧ -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    />
+    <link rel="stylesheet" href="./common/p5template/p5template.css" />
+
+    <script src="./common/p5template/responsive.js"></script>
+    <script src="./common/p5template/scroll.js"></script>
+    <script src="./common/p5template/title.js"></script>
+    <script src="./common/p5template/references.js"></script>
+    <script src="./common/p5template/paging.js"></script>
+    <script>
+      new P5Template.Scroll();
+
+      // ∨○○○○ [수정 필수] ○○○○∨
+      // 작품 제목, 본인 성명, 작품 공개 연도
+      new P5Template.Title(
+        '입이 왕크면 왕많이 먹을 수 있겠지',
+        '이예리',
+        '2025'
+      );
+      // 참고자료 목록
+      const references = [
+        {
+          title: 'Face Mesh Detection with ml5.js',
+          authors: ['Daniel Shiffman'],
+          year: '2024',
+          publisher: 'The Coding Train - YouTube',
+          url: 'https://editor.p5js.org/codingtrain/sketches/CYL9bQtvc?utm_source=chatgpt.com',
+        },
+        {
+          title: '[P5.js 영상처리] 9장 필터링: [질문9.7]이미지의 다양한 필터링',
+          authors: ['김성일'],
+          year: '2025',
+          publisher: '코딩북스 - YouTube',
+          url: 'https://www.youtube.com/watch?v=3O0VQy_tnKI',
+        },
+        {
+          title: '과식의 종말 : 탐욕스러운 식욕을 어떻게 통제할 것인가',
+          authors: ['데이비드 A. 케슬러'],
+          translators: ['이순영'],
+          year: '2010',
+          publisher: '문예출판사',
+        },
+      ];
+      // ∧○○○○ [수정 필수] ○○○○∧
+
+      new P5Template.References(references);
+      new P5Template.Paging();
+    </script>
+
+    <!-- ∨○○○○ [수정 필수] ○○○○∨ -->
+    <!-- p5.js 라이브러리 로딩 -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.8/lib/p5.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.dom.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+    <!-- 본인 스케치 로딩 -->
+    <script src="./sketches/example.js" defer></script>
+    <!-- ∧○○○○ [수정 필수] ○○○○∧ -->
+  </head>
+  <body>
+    <main id="main">
+      <!-- ∨○○○○ [수정 필수] ○○○○∨ -->
+      <!-- 전체화면 여부 선택 -->
+      <section
+        id="section-canvas"
+        class="section section--canvas canvas"
+        data-full-width="false"
+      >
+        <!-- ∧○○○○ [수정 필수] ○○○○∧ -->
+        <div class="container canvas__container">
+          <div id="canvas-container"></div>
+        </div>
+      </section>
+      <section id="section-control" class="section section--control control">
+        <div class="container control__container control__container">
+          <div class="control__label">
+            <div class="control__label__title title"></div>
+            <div class="control__label__author author"></div>
+          </div>
+          <div class="control__paging">
+            <button
+              id="button-prev"
+              class="icon-button control__button control__button--prev"
+              data-icon="arrow_back_ios_new"
+              aria-label="to previous"
+            ></button>
+            <button
+              id="button-next"
+              class="icon-button control__button control__button--next"
+              data-icon="arrow_forward_ios"
+              aria-label="to next"
+            ></button>
+            <button
+              id="button-list"
+              class="icon-button control__button control__button--list"
+              data-icon="grid_view"
+              aria-label="to list"
+            ></button>
+          </div>
+          <div class="control__scroll">
+            <button
+              id="button-scroll"
+              class="icon-button control__button control__button--scroll"
+              data-icon="arrow_drop_down"
+              aria-label="toggle description"
+              data-toward="down"
+            ></button>
+          </div>
+        </div>
+      </section>
+      <section
+        id="section-information"
+        class="section section--information information"
+      >
+        <div class="container information__container">
+          <div class="information__label">
+            <h1 class="information__label__title title"></h1>
+            <h2 class="information__label__author author"></h2>
+          </div>
+          <div class="information__description">
+            <!-- ∨○○○○ [수정 필수] ○○○○∨ -->
+            <!-- 작품 설명 -->
+            <p>
+              고당분, 고지방, 고염분 음식을 먹을 때 우리 뇌의 기본 세포인 뉴런은
+              자극을 받는다. 뉴런은 보상을 주는 음식에 반응을 하면서 전기 신호를
+              일으키고 화학 물질을 분비하며 이 과정에서 다른 뉴런들과 서로
+              정보를 주고받는다. 이를 가리켜 뉴런들이 ‘감칠맛’에 ‘인코딩’된다고
+              한다. 감각 자극들이 뉴런을 활발하게 반응하도록 만들면 먹으라는
+              메시지가 더 강렬해지고, 사람들은 더 열심히 자극을 찾는다는 것이다.
+            </p>
+            <!-- ∧○○○○ [수정 필수] ○○○○∧ -->
+          </div>
+          <div class="information__reference">
+            <div class="information__reference__wrap">
+              <div class="information__reference__title">참고자료</div>
+              <ol></ol>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
